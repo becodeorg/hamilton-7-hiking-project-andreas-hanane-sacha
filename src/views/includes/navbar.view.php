@@ -6,6 +6,9 @@
                 <a href="/newHike"><li>Add a new hike</li></a>
                 <div>
                     <a href="/profil"><li>My Profile</li></a>
+                    <?php if ($_SESSION['user']['is_admin']) { ?>
+                        <a href="/panelAdmin"><li>Panel Admin</li></a>
+                    <?php } ?>
                     <a href="/logout"><li>Logout</li></a>
                 </div>
             </div>

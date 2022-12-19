@@ -6,6 +6,7 @@ class HomeController
     {
         include 'views/includes/header.view.php';
         include 'views/includes/navbar.view.php';
+        include 'views/hikeList.view.php';
         include 'views/includes/footer.view.php';
     }
 }
