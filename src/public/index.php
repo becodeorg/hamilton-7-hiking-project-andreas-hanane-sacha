@@ -25,6 +25,11 @@ if ($url === 'registration') {
     }
 }
 
+if ($url === 'profil'){
+    $userController = new UserController();
+    $userController->showProfile();
+}
+
 if ($url === 'logout') {
     $authController = new AuthController();
     $authController->logout();
