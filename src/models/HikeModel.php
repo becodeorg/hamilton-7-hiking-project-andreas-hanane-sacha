@@ -1,6 +1,6 @@
 <?php
 
-class HikeModel
+class HikeModel extends Model
 {
 
 }
