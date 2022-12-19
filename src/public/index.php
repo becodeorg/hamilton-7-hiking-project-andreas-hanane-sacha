@@ -15,5 +15,17 @@ if ($url === '/' || $url === '') {
 
 if ($url === 'registration') {
     $authController = new AuthController();
-    $authController->showRegistrationForm();
+
+    if ($method === 'GET') {
+        $authController->showRegistrationForm();
+    }
+
+    if ($method === 'POST') {
+        $authController->register($_POST);
+    }
+}
+
+if ($url === 'logout') {
+    $authController = new AuthController();
+    $authController->logout();
 }
