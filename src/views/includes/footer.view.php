@@ -1,7 +1,9 @@
 </body>
 
 <footer>
-    <p>Copyright - Hanane - Andreas - Sacha</p>
+    <p>The Hiking Project</p>
+    <p>Copyright Becode 2022</p>
+    <p>Hanane - Andreas - Sacha</p>
 </footer>
 
 </html>
