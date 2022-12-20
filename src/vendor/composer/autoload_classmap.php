@@ -18,4 +18,6 @@ return array(
     'Model' => $baseDir . '/models/Model.php',
     'TagsController' => $baseDir . '/controllers/TagsController.php',
     'TagsModel' => $baseDir . '/models/TagsModel.php',
+    'UserController' => $baseDir . '/controllers/UserController.php',
+    'UserModel' => $baseDir . '/models/UserModel.php',
 );
