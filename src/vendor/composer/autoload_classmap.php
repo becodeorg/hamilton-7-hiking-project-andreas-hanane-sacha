@@ -16,8 +16,8 @@ return array(
     'HikeModel' => $baseDir . '/models/HikeModel.php',
     'HomeController' => $baseDir . '/controllers/HomeController.php',
     'Model' => $baseDir . '/models/Model.php',
-    'UserController' => $baseDir . '/controllers/UserController.php',
-    'UserModel' => $baseDir . '/models/UserModel.php',
     'TagsController' => $baseDir . '/controllers/TagsController.php',
     'TagsModel' => $baseDir . '/models/TagsModel.php',
+    'UserController' => $baseDir . '/controllers/UserController.php',
+    'UserModel' => $baseDir . '/models/UserModel.php',
 );
