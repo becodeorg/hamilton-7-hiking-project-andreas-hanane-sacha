@@ -13,6 +13,7 @@ class ComposerStaticInit9b91e44ec964cad8a8d8419b7fe02be5
         'Composer\\Autoload\\ClassLoader' => __DIR__ . '/..' . '/composer/ClassLoader.php',
         'Composer\\Autoload\\ComposerStaticInit9b91e44ec964cad8a8d8419b7fe02be5' => __DIR__ . '/..' . '/composer/autoload_static.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
+        'ErrorController' => __DIR__ . '/../..' . '/controllers/ErrorController.php',
         'HikeController' => __DIR__ . '/../..' . '/controllers/HikeController.php',
         'HikeModel' => __DIR__ . '/../..' . '/models/HikeModel.php',
         'HomeController' => __DIR__ . '/../..' . '/controllers/HomeController.php',
