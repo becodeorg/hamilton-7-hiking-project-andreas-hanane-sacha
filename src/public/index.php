@@ -25,6 +25,33 @@ if ($url === 'registration') {
     }
 }
 
+
+if ($url === 'profil') {
+    $userController = new UserController();
+    if($method === 'GET'){
+        $userController->showProfile();
+    }else {
+        switch ($_POST['update']) {
+            case "change":
+                $userController->showProfile();
+                break;
+            case "update":
+                try {
+                    $userController->updateProfile($_POST);
+                } catch (Exception $e) {
+                }
+                break;
+            case "delete":
+                try {
+                    $userController->deleteProfile();
+                } catch (Exception $e) {
+                }
+                break;
+            default:
+                $userController->showProfile();
+        }
+    }
+}
 if ($url === 'login') {
     $authController = new AuthController();
 
