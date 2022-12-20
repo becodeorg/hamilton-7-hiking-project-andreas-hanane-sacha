@@ -28,8 +28,11 @@ class HikeController
         return $hikes;
     }
 
-    public function getHike(int $id): array
+    public function showSingleHike(int $id): void
     {
-
+        include 'views/includes/header.view.php';
+        include 'views/includes/navbar.view.php';
+        include 'views/singleHike.view.php';
+        include 'views/includes/footer.view.php';
     }
 }

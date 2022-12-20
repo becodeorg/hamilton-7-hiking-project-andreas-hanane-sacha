@@ -1,4 +1,5 @@
-.idea
-./dbdata/
+.idea/
+.vscode/
+dbdata/
 .env
-./src/vendor/
+src/vendor/
