@@ -41,3 +41,8 @@ if ($url === 'logout') {
     $authController = new AuthController();
     $authController->logout();
 }
+
+if ($url === 'singleHike') {
+    $hikeController = new HikeController();
+
+}
