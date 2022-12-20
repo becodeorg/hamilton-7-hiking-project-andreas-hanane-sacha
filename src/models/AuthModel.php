@@ -18,4 +18,20 @@ class AuthModel extends Model
             throw new Exception('Error during registration.');
         }
     }
+
+    public function find(string $nickname): array
+    {
+        $user = $this->query(
+            "SELECT * FROM users WHERE nickname = ?",
+            [
+                $nickname
+            ]
+        )->fetch();
+
+        if (!$user) {
+            throw new Exception('Failed login attempt : connection error.');
+        }
+
+        return $user;
+    }
 }

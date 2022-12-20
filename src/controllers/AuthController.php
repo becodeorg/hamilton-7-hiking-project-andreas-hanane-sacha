@@ -39,6 +39,35 @@ class AuthController
         header('location: /');
     }
 
+    public function login(array $input): void
+    {
+        if (empty($input) || empty($input['nickname']) || empty($input['password'])) {
+            throw new Exception('Form data not validated.');
+        }
+
+        $nickname = htmlspecialchars($input['nickname']);
+        $password = htmlspecialchars($input['password']);
+
+        $user = $this->authModel->find($nickname);
+
+        if (!password_verify($password, $user['password'])) {
+            throw new Exception("Failed login attempt : wrong password");
+        }
+
+        $_SESSION['user'] = [
+            'id' => $user['id'],
+            'nickname' => $user['nickname'],
+            'firstname' => $user['firstname'],
+            'lastname' => $user['lastname'],
+            'email' => $user['email'],
+            'is_admin' => $user['is_admin'],
+            'loggedIn' => true
+        ];
+
+        http_response_code(302);
+        header('location: /');
+    }
+
     public function logout(): void
     {
         unset($_SESSION['user']);
@@ -51,6 +80,14 @@ class AuthController
         include 'views/includes/header.view.php';
         include 'views/includes/navbar.view.php';
         include 'views/registrationForm.view.php';
+        include 'views/includes/footer.view.php';
+    }
+
+    public function showLoginForm(): void
+    {
+        include 'views/includes/header.view.php';
+        include 'views/includes/navbar.view.php';
+        include 'views/loginForm.view.php';
         include 'views/includes/footer.view.php';
     }
 }
