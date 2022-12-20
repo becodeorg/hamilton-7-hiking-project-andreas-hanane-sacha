@@ -71,5 +71,4 @@ if ($url === 'logout') {
 
 if ($url === 'singleHike') {
     $hikeController = new HikeController();
-
 }
