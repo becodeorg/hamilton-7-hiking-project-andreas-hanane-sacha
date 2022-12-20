@@ -34,16 +34,16 @@ if ($url === 'profil') {
         $userController->showProfile();
     }else {
         switch ($_POST['update']) {
-            case "1":
+            case "change":
                 $userController->showProfile();
                 break;
-            case "2":
+            case "update":
                 try {
                     $userController->updateProfile($_POST);
                 } catch (Exception $e) {
                 }
                 break;
-            case "3":
+            case "delete":
                 try {
                     $userController->deleteProfile();
                 } catch (Exception $e) {

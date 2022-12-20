@@ -1,6 +1,6 @@
 <h1><?= $_SESSION['user']['firstname'] ?>'s Profile</h1>
 <form action="/profil" method="post">
-    <?php if($_POST['update']=== "1"){ ?>
+    <?php if($_POST['update']=== "change"){ ?>
         <div>
             <label for="nickname">Nickname</label>
             <input type="text" name="nickname" value="<?= $_SESSION['user']['nickname'] ?>">
@@ -18,8 +18,8 @@
             <input type="text" name="email" value="<?= $_SESSION['user']['email'] ?>">
         </div>
         <div>
-            <button name="update" value="2" type="submit">Change</button>
-            <button name="update" value="3" type="submit">Delete</button>
+            <button name="update" value="update" type="submit">Change</button>
+            <button name="update" value="delete" type="submit">Delete</button>
             <button name="update" value="-1" type="submit">Cancel</button>
         </div>
     <?php }else{ ?>
@@ -40,7 +40,7 @@
             <p><?= $_SESSION['user']['email'] ?></p>
         </div>
         <div>
-            <button name="update" value="1" type="submit">Change</button>
+            <button name="update" value="change" type="submit">Change</button>
         </div>
     <?php } ?>
 </form>
