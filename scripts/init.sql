@@ -1,2 +1,2 @@
-GRANT ALL PRIVILEGES ON `%`.* TO 'db_hiking-user'@'%';
+GRANT ALL PRIVILEGES ON `%`.* TO 'hiking-ahs'@'%';
 FLUSH PRIVILEGES;
