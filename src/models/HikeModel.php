@@ -130,4 +130,18 @@ class HikeModel extends Model
             throw new Exception("Error during hike tag deletion.");
         }
     }
+
+    public function getUserHikes(int $id_user): void
+    {
+        $stmt = $this->query(
+            "SELECT * FROM hikes WHERE id_user = ?",
+            [
+                $id_user
+            ]
+        );
+
+        if (!stmt) {
+            throw new Exception();
+        }
+    }
 }

@@ -121,6 +121,7 @@ class HikeController
     public function deleteHike(int $id): void
     {
         $this->hikeModel->delete($id);
+        $this->deleteHikeTag($id);
 
         http_response_code(302);
         header('location: /');
@@ -129,5 +130,10 @@ class HikeController
     public function deleteHikeTag(int $id): void
     {
         $this->hikeModel->deleteTags($id);
+    }
+
+    public function getUserHikes(int $id_user): void
+    {
+
     }
 }
