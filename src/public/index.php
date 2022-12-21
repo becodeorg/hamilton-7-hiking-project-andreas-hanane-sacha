@@ -1,12 +1,31 @@
 <?php
 declare(strict_types=1);
 
+use JetBrains\PhpStorm\NoReturn;
+
 session_start();
 
 require 'vendor/autoload.php';
+require 'functions/functions.php';
 
 $url = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
 $method = $_SERVER['REQUEST_METHOD'];
+
+$routes=[
+    "",
+    "registration",
+    "profil",
+    "login",
+    "logout"
+];
+
+$errorController = new ErrorController();
+
+if(!in_array($url, $routes)){
+    $errorController->showError("404 page not found");
+}
+
+
 
 if ($url === '') {
     $homeController = new HomeController();
@@ -21,7 +40,11 @@ if ($url === 'registration') {
     }
 
     if ($method === 'POST') {
-        $authController->register($_POST);
+        try {
+            $authController->register($_POST);
+        } catch (Exception $e) {
+            $errorController->showError($e->getMessage());
+        }
     }
 }
 
@@ -38,12 +61,14 @@ if ($url === 'profil') {
                 try {
                     $userController->updateProfile($_POST);
                 } catch (Exception $e) {
+                    $errorController->showError($e->getMessage());
                 }
                 break;
             case "delete":
                 try {
                     $userController->deleteProfile();
                 } catch (Exception $e) {
+                    $errorController->showError($e->getMessage());
                 }
                 break;
             default:
@@ -60,7 +85,11 @@ if ($url === 'login') {
     }
 
     if ($method === 'POST') {
-        $authController->login($_POST);
+        try {
+            $authController->login($_POST);
+        } catch (Exception $e) {
+            $errorController->showError($e->getMessage());
+        }
     }
 }
 

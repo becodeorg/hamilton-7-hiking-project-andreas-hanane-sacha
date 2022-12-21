@@ -39,6 +39,9 @@ class AuthController
         header('location: /');
     }
 
+    /**
+     * @throws Exception
+     */
     public function login(array $input): void
     {
         if (empty($input) || empty($input['nickname']) || empty($input['password'])) {
