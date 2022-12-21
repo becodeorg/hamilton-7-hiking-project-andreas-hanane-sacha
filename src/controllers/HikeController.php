@@ -38,6 +38,7 @@ class HikeController
         $hike = $this->hikeModel->getHike($id);
         $tags = $this->hikeModel->getTags(intval($hike['id']));
         $hike['tags'] = [];
+        $allTags = $this->tagsController->getTags();
 
         for ($i = 0; $i < count($tags); $i++) {
             array_push($hike['tags'], $tags[$i]['name']);
@@ -72,6 +73,9 @@ class HikeController
         foreach ($tagsId as $id_tag) {
             $this->hikeModel->linkTags($id_tag, $id_hike);
         }
+
+        http_response_code(302);
+        header('location: /');
     }
 
     public function showNewHikeForm(): void
@@ -82,5 +86,48 @@ class HikeController
         include 'views/includes/navbar.view.php';
         include 'views/newHike.view.php';
         include 'views/includes/footer.view.php';
+    }
+
+
+    public function updateHike(array $input, int $id): void
+    {
+        if (empty($input['name']) || empty($input['duration']) || empty($input['distance']) || empty($input['duration']) ||
+            empty($input['elevation_gain']) || empty($input['description']) || empty($input['tags'])) {
+            throw new Exception('Form data not validated.');
+        }
+
+        $name = htmlspecialchars($input['name']);
+        $distance = $input['distance'];
+        $duration = $input['duration'];
+        $elevation_gain = $input['elevation_gain'];
+        $description = htmlspecialchars($input['description']);
+
+        $this->hikeModel->update($id, $name, $distance, $duration, $elevation_gain, $description);
+
+        $this->deleteHikeTag($id);
+
+        $tagsId = $input['tags'];
+        foreach ($tagsId as $id_tag) {
+            $this->hikeModel->linkTags($id_tag, strval($id));
+        }
+
+        http_response_code(302);
+        header('location: /singleHike?id=' .$id);
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function deleteHike(int $id): void
+    {
+        $this->hikeModel->delete($id);
+
+        http_response_code(302);
+        header('location: /');
+    }
+
+    public function deleteHikeTag(int $id): void
+    {
+        $this->hikeModel->deleteTags($id);
     }
 }

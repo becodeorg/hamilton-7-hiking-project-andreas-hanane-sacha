@@ -85,10 +85,11 @@ class HikeModel extends Model
     /*
      * update the hike
      */
-    public function update(string $id, string $name, string $distance, string $duration, string $elevation_gain, string $description): void
+    public function update(int $id, string $name, string $distance, string $duration, string $elevation_gain, string $description): void
     {
+        //"UPDATE `users` SET `nickname`= ?,`firstname`= ?,`lastname`= ?,`email`= ? WHERE `id` = ?"
         if (!$this->query(
-            "UPDATE `hikes` SET `name`= ?, `distance`= ?,`duration`= ?,`elevation_gain`= ? `description`= ?, `isUpdated` = ? WHERE `id` = ?",
+            "UPDATE `hikes` SET `name` = ?, `distance` = ?,`duration` = ?,`elevation_gain` = ?, `description`= ?, `isUpdated` = ? WHERE `id` = ?",
             [
                 $name,
                 $distance,
@@ -115,6 +116,18 @@ class HikeModel extends Model
             ]
         )) {
             throw new Exception('Error during hike deletion.');
+        }
+    }
+
+    public function deleteTags(int $id): void
+    {
+        if (!$this->query(
+            "DELETE FROM `tags_hikes_links` WHERE `id_hike` = ?",
+            [
+                $id
+            ]
+        )) {
+            throw new Exception("Error during hike tag deletion.");
         }
     }
 }

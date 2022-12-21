@@ -102,9 +102,32 @@ if ($url === 'logout') {
 
 if ($url === 'singleHike') {
     $hikeController = new HikeController();
+    $id = intval($_GET['id']);
 
-    if ($method === 'GET') {
-        $hikeController->showSingleHike(intval($_GET['id']));
+    if($method === 'GET'){
+        $hikeController->showSingleHike($id);
+    }else {
+        switch ($_POST['update']) {
+            case "change":
+                $hikeController->showSingleHike($id);
+                break;
+            case "update":
+                try {
+                    $hikeController->updateHike($_POST, $id);
+                } catch (Exception $e) {
+                    $errorController->showError($e->getMessage());
+                }
+                break;
+            case "delete":
+                try {
+                    $hikeController->deleteHike($id);
+                } catch (Exception $e) {
+                    $errorController->showError($e->getMessage());
+                }
+                break;
+            default:
+                $hikeController->showSingleHike($id);
+        }
     }
 }
 

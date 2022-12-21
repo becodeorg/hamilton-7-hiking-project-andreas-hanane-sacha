@@ -5,7 +5,7 @@
     </div>
     <div>
         <label for="distance">Distance : </label>
-        <input type="number" name="distance" min="1">
+        <input type="number" name="distance" min="1" step="0.01">
     </div>
     <div>
         <label for="duration">Duration : </label>
@@ -13,7 +13,7 @@
     </div>
     <div>
         <label for="elevation_gain">Elevation Gain : </label>
-        <input type="number" name="elevation_gain" min="1">
+        <input type="number" name="elevation_gain" min="1" step="0.01">
     </div>
     <div>
         <label for="description">Description : </label>
