@@ -1,11 +1,11 @@
-<form action="/" method="post">
+<form action="/newHike" method="post">
     <div>
         <label for="name">Name : </label>
         <input type="text" name="name">
     </div>
     <div>
         <label for="distance">Distance : </label>
-        <input type="number" name="distance" min="1">
+        <input type="number" name="distance" min="1" step="0.01">
     </div>
     <div>
         <label for="duration">Duration : </label>
