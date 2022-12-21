@@ -52,4 +52,9 @@ class UserController
         include 'views/profile.view.php';
         include 'views/includes/footer.view.php';
     }
+
+    public function getUser(int $id)
+    {
+        return $this->userModel->findUser($id);
+    }
 }

@@ -13,9 +13,4 @@ class TagsController
     {
         return $this->tagsModel->find();
     }
-
-    public function getTagsNames(int $id): array
-    {
-        return $this->tagsModel->findTagsNames($id);
-    }
 }

@@ -5,11 +5,13 @@ class HikeController
 {
     private HikeModel $hikeModel;
     private TagsController $tagsController;
+    private UserController $userController;
 
     public function __construct()
     {
         $this->hikeModel = new HikeModel();
         $this->tagsController = new TagsController();
+        $this->userController = new UserController();
     }
 
     public function getHikesList(): array
@@ -23,8 +25,54 @@ class HikeController
             for ($j = 0; $j < count($tags); $j++) {
                 array_push($hikes[$i]['tags'], $tags[$j]['name']);
             }
+
+            $user = $this->userController->getUser(intval($hikes[$i]['id_user']));
+            $hikes[$i]['createdBy'] = $user['nickname'];
         }
 
         return $hikes;
+    }
+
+    public function showSingleHike(int $id): void
+    {
+        $hike = $this->hikeModel->getHike($id);
+        $tags = $this->hikeModel->getTags(intval($hike['id']));
+        $hike['tags'] = [];
+
+        for ($i = 0; $i < count($tags); $i++) {
+            array_push($hike['tags'], $tags[$i]['name']);
+        }
+
+        $user = $this->userController->getUser(intval($hike['id_user']));
+        $hike['createdBy'] = $user['nickname'];
+
+        include 'views/includes/header.view.php';
+        include 'views/includes/navbar.view.php';
+        include 'views/singleHike.view.php';
+        include 'views/includes/footer.view.php';
+    }
+
+    public function addHike(array $input): void
+    {
+        if (empty($input['name'] || empty($input['distance']) ||
+            empty($input['duration']) || empty($input['elevation_gain']) || empty($input['description']))) {
+
+            throw new Exception('Form data not validated.');
+        }
+
+        $name = htmlspecialchars($input['name']);
+        $description = htmlspecialchars($input['description']);
+
+        $this->hikeModel->create($name, $input['distance'], $input['duration'], $input['elevation_gain'], $description);
+    }
+
+    public function showNewHikeForm(): void
+    {
+        $tags = $this->tagsController->getTags();
+
+        include 'views/includes/header.view.php';
+        include 'views/includes/navbar.view.php';
+        include 'views/newHike.view.php';
+        include 'views/includes/footer.view.php';
     }
 }
