@@ -53,4 +53,20 @@ class UserModel extends Model
             throw new Exception('Error during deletion.');
         }
     }
+
+    public function findUser(int $id): array
+    {
+        $stmt = $this->query(
+            "SELECT * FROM users WHERE id = ?",
+            [
+                $id
+            ]
+        );
+
+        if (!$stmt) {
+            throw new Exception('Error during finding user.');
+        }
+
+        return $stmt->fetch();
+    }
 }

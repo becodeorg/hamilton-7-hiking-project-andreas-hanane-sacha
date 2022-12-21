@@ -25,7 +25,6 @@ if ($url === 'registration') {
     }
 }
 
-
 if ($url === 'profil') {
     $userController = new UserController();
     if($method === 'GET'){
@@ -52,6 +51,7 @@ if ($url === 'profil') {
         }
     }
 }
+
 if ($url === 'login') {
     $authController = new AuthController();
 
@@ -71,4 +71,20 @@ if ($url === 'logout') {
 
 if ($url === 'singleHike') {
     $hikeController = new HikeController();
+
+    if ($method === 'GET') {
+        $hikeController->showSingleHike(intval($_GET['id']));
+    }
+}
+
+if ($url === 'newHike') {
+    $hikeController = new HikeController();
+
+    if ($method === 'GET') {
+        $hikeController->showNewHikeForm();
+    }
+
+    if ($method === 'POST') {
+        $hikeController->addHike($_POST);
+    }
 }

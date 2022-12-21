@@ -3,6 +3,7 @@
     <ul>
         <?php if ($_SESSION['user']['loggedIn']) { ?>
             <div>
+                <a href="/"><li>Home</li></a>
                 <a href="/newHike"><li>Add a new hike</li></a>
                 <div>
                     <a href="/profil"><li>My Profile</li></a>
