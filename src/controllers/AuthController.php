@@ -10,9 +10,12 @@ class AuthController
         $this->authModel = new AuthModel();
     }
 
+    /**
+     * @throws Exception
+     */
     public function register(array $input): void
     {
-        if (empty($input['nickname']) || empty($input['firstname']) || empty($input['lastname']) || empty($input['email']) || empty($input['password'])) {
+        if (empty($input['nickname']) || empty($input['firstname']) || empty($input['lastname']) || empty($input['email']) || empty($input['password']) || empty($input['confirmPassword'])) {
             throw new Exception('Form data not validated.');
         }
 
@@ -21,6 +24,11 @@ class AuthController
         $lastname = htmlspecialchars($input['lastname']);
         $email = filter_var($input['email'], FILTER_SANITIZE_EMAIL);
         $password = password_hash($input['password'], PASSWORD_DEFAULT);
+        $confirmPassword = password_hash($input['confirmPassword'], PASSWORD_DEFAULT);
+
+        if($password != $confirmPassword){
+            throw new Exception("Password don't match.");
+        }
 
         $this->authModel->create($nickname, $firstname, $lastname, $email, $password);
 

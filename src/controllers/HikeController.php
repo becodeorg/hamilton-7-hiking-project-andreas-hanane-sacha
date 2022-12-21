@@ -53,6 +53,9 @@ class HikeController
         include 'views/includes/footer.view.php';
     }
 
+    /**
+     * @throws Exception
+     */
     public function addHike(array $input): void
     {
         if (empty($input['name'] || empty($input['distance']) ||
