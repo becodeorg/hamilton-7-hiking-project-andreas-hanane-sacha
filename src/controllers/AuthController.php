@@ -26,8 +26,8 @@ class AuthController
         $password = password_hash($input['password'], PASSWORD_DEFAULT);
         $confirmPassword = password_hash($input['confirmPassword'], PASSWORD_DEFAULT);
 
-        if($password != $confirmPassword){
-            throw new Exception("Password don't match.");
+        if (!password_verify($input['confirmPassword'], $password)) {
+            throw new Exception("Passwords don't match");
         }
 
         $this->authModel->create($nickname, $firstname, $lastname, $email, $password);
