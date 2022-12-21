@@ -55,15 +55,23 @@ class HikeController
     public function addHike(array $input): void
     {
         if (empty($input['name'] || empty($input['distance']) ||
-            empty($input['duration']) || empty($input['elevation_gain']) || empty($input['description']))) {
+            empty($input['duration']) || empty($input['elevation_gain']) ||
+            empty($input['description'] || empty($input['tags'])))) {
 
             throw new Exception('Form data not validated.');
         }
 
         $name = htmlspecialchars($input['name']);
         $description = htmlspecialchars($input['description']);
+        $tagsId = $input['tags'];
 
         $this->hikeModel->create($name, $input['distance'], $input['duration'], $input['elevation_gain'], $description);
+
+        $id_hike = $this->hikeModel->getLastInsertId();
+
+        foreach ($tagsId as $id_tag) {
+            $this->hikeModel->linkTags($id_tag, $id_hike);
+        }
     }
 
     public function showNewHikeForm(): void

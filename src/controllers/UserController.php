@@ -45,6 +45,7 @@ class UserController
         http_response_code(302);
         header('location: /logout');
     }
+
     public function showProfile(): void
     {
         include 'views/includes/header.view.php';

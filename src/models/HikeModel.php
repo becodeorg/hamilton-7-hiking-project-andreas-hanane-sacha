@@ -5,7 +5,7 @@ class HikeModel extends Model
     public function getHikes(): array|false
     {
         $stmt = $this->query(
-            "SELECT * FROM hikes"
+            "SELECT * FROM hikes ORDER BY date_creation DESC"
         );
 
         if (!$stmt) {
@@ -53,7 +53,6 @@ class HikeModel extends Model
 
     public function create(string $name, string $distance, string $duration, string $elevation_gain, string $description): void
     {
-        //TODO AJOUTER LES TAGS DES HIKES DANS LE FORM ET LES ENVOYER EN DB
         if (!$this->query(
             "INSERT INTO hikes(id_user, name, date_creation, distance, duration, elevation_gain, description) VALUES (?, ?, ?, ?, ?, ?, ?)",
             [
@@ -67,6 +66,55 @@ class HikeModel extends Model
             ]
         )) {
             throw new Exception("Failed to add a hike.");
+        }
+    }
+
+    public function linkTags(string $id_tag, string $id_hike): void
+    {
+        if (!$this->query(
+            "INSERT INTO tags_hikes_links(id_tag, id_hike) VALUES(?, ?)",
+            [
+                $id_tag,
+                $id_hike
+            ]
+        )) {
+            throw new Exception("Failed to link the tag and the hike");
+        }
+    }
+
+    /*
+     * update the hike
+     */
+    public function update(string $id, string $name, string $distance, string $duration, string $elevation_gain, string $description): void
+    {
+        if (!$this->query(
+            "UPDATE `hikes` SET `name`= ?, `distance`= ?,`duration`= ?,`elevation_gain`= ? `description`= ?, `isUpdated` = ? WHERE `id` = ?",
+            [
+                $name,
+                $distance,
+                $duration,
+                $elevation_gain,
+                $description,
+                date('Y-m-d'),
+                $id
+            ]
+        )) {
+            throw new Exception('Error during hike updating.');
+        }
+    }
+
+    /*
+     * delete the hike
+     */
+    public function delete(int $id):void
+    {
+        if (!$this->query(
+            "DELETE FROM `hikes` WHERE `id`= ?",
+            [
+                $id
+            ]
+        )) {
+            throw new Exception('Error during hike deletion.');
         }
     }
 }

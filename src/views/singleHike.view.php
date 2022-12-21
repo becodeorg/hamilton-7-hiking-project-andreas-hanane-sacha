@@ -24,7 +24,6 @@
         <label for="description">Description : </label>
         <p><?php echo $hike['description'] ?></p>
     </div>
-    <!--TODO AJOUTER LES TAGS DES HIKES DANS LE FORM ET LES ENVOYER EN DB-->
     <div>
         <label for="createdBy">Created by : </label>
         <p><?php echo $hike['createdBy'] ?></p>

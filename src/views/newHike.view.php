@@ -1,4 +1,4 @@
-<form action="/" method="post">
+<form action="/newHike" method="post">
     <div>
         <label for="name">Name : </label>
         <input type="text" name="name">
@@ -18,6 +18,15 @@
     <div>
         <label for="description">Description : </label>
         <textarea name="description"></textarea>
+    </div>
+    <div>
+        <label for="tags">Tags : </label>
+        <ul>
+            <?php foreach ($tags as $tag) { ?>
+                <input type="checkbox" name="tags[]" value=<?php echo $tag['id']; ?> id=<?php echo $tag['name']; ?> />
+                <label for=<?php echo $tag['name']; ?>><?php echo $tag['name']; ?></label>
+            <?php } ?>
+        </ul>
     </div>
     <button type="submit">Add a new hike</button>
 </form>

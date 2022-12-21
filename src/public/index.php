@@ -16,7 +16,9 @@ $routes=[
     "registration",
     "profil",
     "login",
-    "logout"
+    "logout",
+    "singleHike",
+    "newHike"
 ];
 
 $errorController = new ErrorController();

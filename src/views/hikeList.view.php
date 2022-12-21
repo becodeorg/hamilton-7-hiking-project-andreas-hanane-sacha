@@ -26,7 +26,7 @@
                 <label for="tags">Tags : </label>
                 <ul>
                     <?php foreach ($hike['tags'] as $tag) { ?>
-                        <li><?php echo $tag; ?></li>
+                        <li id=<?php echo $tag; ?>><?php echo $tag; ?></li>
                     <?php } ?>
                 </ul>
             </div>
