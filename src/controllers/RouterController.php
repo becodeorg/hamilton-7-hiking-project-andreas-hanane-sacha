@@ -47,14 +47,16 @@ class RouterController
         if(!$_SESSION['user']['loggedIn']){
             $this->login($method);
         }else {
+            $id = intval($_SESSION['user']['id']);
+
             switch ($method) {
                 case 'GET':
-                    $this->userController->showProfile();
+                    $this->userController->showProfile($id);
                     break;
                 case 'POST':
                     switch ($_POST['update']) {
                         case "change":
-                            $this->userController->showProfile();
+                            $this->userController->showProfile($id);
                             break;
                         case "update":
                             try {
@@ -71,7 +73,7 @@ class RouterController
                             }
                             break;
                         default:
-                            $this->userController->showProfile();
+                            $this->userController->showProfile($id);
                     }
                     break;
                 default:

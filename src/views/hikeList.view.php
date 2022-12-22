@@ -31,8 +31,13 @@
                 </ul>
             </div>
             <div>
-                <label for="createdBy">Created by : </label>
-                <p><?php echo $hike['createdBy'] ?></p>
+                <?php if ($hike['isUpdated']) : ?>
+                    <label for="updatedBy">Updated by : </label>
+                    <p><?php echo $hike['updatedBy'] ?></p>
+                <?php else : ?>
+                    <label for="createdBy">Created by : </label>
+                    <p><?php echo $hike['createdBy'] ?></p>
+                 <?php endif; ?>
             </div>
         <?php } ?>
         </div>

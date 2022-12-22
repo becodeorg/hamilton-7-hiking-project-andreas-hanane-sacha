@@ -26,6 +26,10 @@ class HikeController
 
             $user = $userController->getUser(intval($hikes[$i]['id_user']));
             $hikes[$i]['createdBy'] = $user['nickname'];
+
+            if ($hikes[$i]['isUpdated']) {
+                $hikes[$i]['updatedBy'] = $user['nickname'];
+            }
         }
 
         return $hikes;

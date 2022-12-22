@@ -24,6 +24,7 @@ class UserController
         $email = filter_var($input['email'], FILTER_SANITIZE_EMAIL);
 
         $this->userModel->update($nickname, $firstname, $lastname, $email, $this->userModel->getId());
+
         $_SESSION['user'] = [
             'nickname' => $nickname,
             'firstname' => $firstname,
