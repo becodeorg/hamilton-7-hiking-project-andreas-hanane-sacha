@@ -71,7 +71,7 @@
             <p><?php echo $hike['createdBy'] ?></p>
         </div>
         <div>
-            <?php if ($_SESSION['user']['id'] === $hike['id_user']) : ?>
+            <?php if (($_SESSION['user']['id'] === $hike['id_user']) || $_SESSION['user']['is_admin']) : ?>
                 <button name="update" value="change" type="submit">Change</button>
             <?php endif; ?>
         </div>
