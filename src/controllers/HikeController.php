@@ -4,18 +4,16 @@ declare(strict_types=1);
 class HikeController
 {
     private HikeModel $hikeModel;
-    private TagsController $tagsController;
-    private UserController $userController;
 
     public function __construct()
     {
         $this->hikeModel = new HikeModel();
-        $this->tagsController = new TagsController();
-        $this->userController = new UserController();
     }
 
     public function getHikesList(): array
     {
+        $userController = new UserController();
+
         $hikes = $this->hikeModel->getHikes();
 
         for ($i = 0; $i < count($hikes); $i++) {
@@ -26,7 +24,7 @@ class HikeController
                 array_push($hikes[$i]['tags'], $tags[$j]['name']);
             }
 
-            $user = $this->userController->getUser(intval($hikes[$i]['id_user']));
+            $user = $userController->getUser(intval($hikes[$i]['id_user']));
             $hikes[$i]['createdBy'] = $user['nickname'];
         }
 
@@ -35,16 +33,19 @@ class HikeController
 
     public function showSingleHike(int $id): void
     {
+        $userController = new UserController();
+        $tagsController = new TagsController();
+
         $hike = $this->hikeModel->getHike($id);
         $tags = $this->hikeModel->getTags(intval($hike['id']));
         $hike['tags'] = [];
-        $allTags = $this->tagsController->getTags();
+        $allTags = $tagsController->getTags();
 
         for ($i = 0; $i < count($tags); $i++) {
             array_push($hike['tags'], $tags[$i]['name']);
         }
 
-        $user = $this->userController->getUser(intval($hike['id_user']));
+        $user = $userController->getUser(intval($hike['id_user']));
         $hike['createdBy'] = $user['nickname'];
 
         include 'views/includes/header.view.php';
@@ -83,7 +84,8 @@ class HikeController
 
     public function showNewHikeForm(): void
     {
-        $tags = $this->tagsController->getTags();
+        $tagsController = new TagsController();
+        $tags = $tagsController->getTags();
 
         include 'views/includes/header.view.php';
         include 'views/includes/navbar.view.php';
@@ -135,8 +137,8 @@ class HikeController
         $this->hikeModel->deleteTags($id);
     }
 
-    public function getUserHikes(int $id_user): void
+    public function getUserHikes(int $id_user): array
     {
-
+        return $this->hikeModel->getUserHikes($id_user);
     }
 }

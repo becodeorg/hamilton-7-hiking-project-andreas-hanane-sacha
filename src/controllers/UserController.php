@@ -12,7 +12,7 @@ class UserController
     /**
      * @throws Exception
      */
-    public function updateProfile($input): void
+    public function updateProfile(array $input): void
     {
         if (empty($input['nickname']) || empty($input['firstname']) || empty($input['lastname']) || empty($input['email'])) {
             throw new Exception('Form data not validated.');
@@ -22,6 +22,7 @@ class UserController
         $firstname = htmlspecialchars($input['firstname']);
         $lastname = htmlspecialchars($input['lastname']);
         $email = filter_var($input['email'], FILTER_SANITIZE_EMAIL);
+
         $this->userModel->update($nickname, $firstname, $lastname, $email, $this->userModel->getId());
         $_SESSION['user'] = [
             'nickname' => $nickname,
@@ -46,9 +47,10 @@ class UserController
         header('location: /logout');
     }
 
-    public function showProfile(): void
+    public function showProfile(int $id): void
     {
-
+        $hikeController = new HikeController();
+        $hikes = $hikeController->getUserHikes($id);
 
         include 'views/includes/header.view.php';
         include 'views/includes/navbar.view.php';

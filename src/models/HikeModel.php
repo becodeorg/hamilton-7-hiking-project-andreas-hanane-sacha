@@ -131,7 +131,7 @@ class HikeModel extends Model
         }
     }
 
-    public function getUserHikes(int $id_user): void
+    public function getUserHikes(int $id_user): array
     {
         $stmt = $this->query(
             "SELECT * FROM hikes WHERE id_user = ?",
@@ -140,8 +140,10 @@ class HikeModel extends Model
             ]
         );
 
-        if (!stmt) {
-            throw new Exception();
+        if (!$stmt) {
+            throw new Exception("Error during fetch the user hikes");
         }
+
+        return $stmt->fetchAll();
     }
 }
