@@ -105,10 +105,35 @@ class RouterController
 
     public function singleHike(string $method):void
     {
+        $id = intval($_GET['id']);
         switch ($method) {
             case 'GET':
-                $this->hikeController->showSingleHike(intval($_GET['id']));
+                $this->hikeController->showSingleHike($id);
                 break;
+            case 'POST':
+                switch ($_POST['update']) {
+                    case "change":
+                        $this->hikeController->showSingleHike($id);
+                        break;
+                    case "update":
+                        try {
+                            $this->hikeController->updateHike($_POST, $id);
+                        } catch (Exception $e) {
+                            $this->errorController->showError($e->getMessage());
+                        }
+                        break;
+                    case "delete":
+                        try {
+                            $this->hikeController->deleteHike($id);
+                        } catch (Exception $e) {
+                            $this->errorController->showError($e->getMessage());
+                        }
+                        break;
+                    default:
+                        $this->hikeController->showSingleHike($id);
+                }
+                break;
+
             default:
                 $this->errorController->showError("Bad request");
         }
