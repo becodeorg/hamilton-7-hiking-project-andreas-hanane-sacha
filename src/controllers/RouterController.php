@@ -42,7 +42,7 @@ class RouterController
         }
     }
 
-    public function profil(string $method):void
+    public function profile(string $method):void
     {
         if(!$_SESSION['user']['loggedIn']){
             $this->login($method);
@@ -161,7 +161,7 @@ class RouterController
 
     public function router():void
     {
-        $url = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
+        global $url;
         $method = $_SERVER['REQUEST_METHOD'];
 
         switch ($url){
@@ -171,8 +171,8 @@ class RouterController
             case 'registration':
                 $this->registration($method);
                 break;
-            case 'profil':
-                $this->profil($method);
+            case 'profile':
+                $this->profile($method);
                 break;
             case 'login':
                 $this->login($method);

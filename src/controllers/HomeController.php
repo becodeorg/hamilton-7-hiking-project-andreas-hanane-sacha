@@ -11,6 +11,8 @@ class HomeController
 
     public function index(): void
     {
+        global $url;
+
         $hikeController = new HikeController();
 
         $hikes = $hikeController->getHikesList();

@@ -88,6 +88,8 @@ class AuthController
 
     public function showRegistrationForm(): void
     {
+        global $url;
+
         include 'views/includes/header.view.php';
         include 'views/includes/navbar.view.php';
         include 'views/registrationForm.view.php';
@@ -96,6 +98,8 @@ class AuthController
 
     public function showLoginForm(): void
     {
+        global $url;
+
         include 'views/includes/header.view.php';
         include 'views/includes/navbar.view.php';
         include 'views/loginForm.view.php';

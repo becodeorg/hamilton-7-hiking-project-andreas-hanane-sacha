@@ -1,13 +1,6 @@
 <section class="flex flex-col px-12 py-10 w-full max-w-8xl m-auto">
     <h2 class="text-2xl mb-10">Hello <span class="font-bold text-sky-400"><?php echo $_SESSION['user']['nickname']; ?></span> !</h2>
     <h2 class="text-2xl underline mb-7">There are the avaible hikes : </h2>
-    <label class="underline mb-2" >Sort by : </label>
-    <select class="mb-7 px-2 py-2">
-        <option value="all" selected>All</option>
-        <?php foreach ($tags as $tag) { ?>
-            <option value=<?php echo $tag['name']; ?>><?php echo ucfirst($tag['name']); ?></option>
-        <?php } ?>
-    </select>
     <div class="mt-7 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-8">
         <?php foreach ($hikes as $hike) { ?>
             <div class="flex flex-col rounded overflow-hidden shadow-lg mb-12 w-full py-5 px-5">
@@ -33,6 +26,15 @@
                         <label for="createdBy" class="mr-2">Created by : </label>
                         <p><?php echo $hike['createdBy'] ?></p>
                      <?php endif; ?>
+                </div>
+                <div class="flex flex-row mb-5">
+                    <?php if ($hike['isUpdated']) : ?>
+                        <label for="updatedBy" class="mr-2">Updated the </label>
+                        <p><?php echo $hike['date_creation'] ?></p>
+                    <?php else : ?>
+                        <label for="createdBy" class="mr-2">Created the </label>
+                        <p><?php echo $hike['date_creation'] ?></p>
+                    <?php endif; ?>
                 </div>
                 <hr class="mb-5">
                 <div class="flex flex-row mb-5">
