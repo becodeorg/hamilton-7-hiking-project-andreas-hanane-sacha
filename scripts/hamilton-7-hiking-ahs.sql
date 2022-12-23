@@ -121,8 +121,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `nickname`, `firstname`, `lastname`, `email`, `password`, `is_admin`) VALUES
-(1, 'Nicktest2', 'Firsttest2', 'Lasttest', 'test2@mail.com', '$2y$10$QFqI7TK3mKnHYB4w3HKKTOC8wUj1SxLH43rCMcoW7oABWHtVgGX7.', 0),
-(2, 'admin', 'admin_firstname2222', 'admin_lastname', 'admin222@email.com', '$2y$10$Ls/oDQ73WipfJyXvhohdL.ZASQN3oHZ30F5uA2f37k6KPksp1umuW', 0);
+(1, 'admin', 'admin_firstname2222', 'admin_lastname', 'admin222@email.com', '$2y$10$Ls/oDQ73WipfJyXvhohdL.ZASQN3oHZ30F5uA2f37k6KPksp1umuW', 0);
 
 --
 -- Index pour les tables déchargées
