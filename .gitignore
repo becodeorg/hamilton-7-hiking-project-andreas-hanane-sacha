@@ -1,5 +1,6 @@
-.idea/
-.vscode/
-dbdata/
+.idea
+.vscode
+dbdata
 .env
-src/vendor/
+src/vendor
+src/node_modules
