@@ -10,29 +10,31 @@
         <div class="hidden w-full md:block md:w-auto" id="navbar-default">
             <ul class="flex flex-col p-4 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
                 <li>
-                    <a href="/" class="hover:underline hover:text-sky-400 block py-2 pl-3 pr-4 rounded md:bg-transparent text-gray-500 md:p-0 dark:text-white text-base" aria-current="page">Home</a>
+                    <a href="/" class="<?php if ($url === '' || $url === 'singleHike' ) { echo "underline text-sky-400"; } else { echo "hover:underline hover:text-sky-400"; } ?> block py-2 pl-3 pr-4 rounded md:bg-transparent text-gray-500 md:p-0 dark:text-white text-base" aria-current="page">Home</a>
                 </li>
                 <?php if ($_SESSION['user']['loggedIn']) : ?>
                     <li>
-                        <a href="/newHike" class="hover:underline hover:text-sky-400 block py-2 pl-3 pr-4 rounded md:bg-transparent text-gray-500 md:p-0 dark:text-white text-base" aria-current="page">Add a new hike</a>
+                        <a href="/newHike" class="<?php if ($url === 'newHike' ) { echo "underline text-sky-400"; } else { echo "hover:underline hover:text-sky-400"; } ?>  block py-2 pl-3 pr-4 rounded md:bg-transparent text-gray-500 md:p-0 dark:text-white text-base" aria-current="page">Add a new hike</a>
                     </li>
                     <li>
-                        <a href="/profil" class="hover:underline hover:text-sky-400 block py-2 pl-3 pr-4 rounded md:bg-transparent text-gray-500 md:p-0 dark:text-white text-base" aria-current="page">My profile</a>
+                        <a href="/profile" class="<?php if ($url === 'profile' ) { echo "underline text-sky-400"; } else { echo "hover:underline hover:text-sky-400"; } ?>  block py-2 pl-3 pr-4 rounded md:bg-transparent text-gray-500 md:p-0 dark:text-white text-base" aria-current="page">My profile</a>
                     </li>
+                    <!--
                     <?php if ($_SESSION['user']['is_admin']) : ?>
                         <li>
-                            <a href="/adminPanel" class="hover:underline hover:text-sky-400 block py-2 pl-3 pr-4 rounded md:bg-transparent text-gray-500 md:p-0 dark:text-white text-base" aria-current="page">Admin panel</a>
+                            <a href="/adminPanel" class="<?php if ($url === 'adminPanel' ) { echo "underline text-sky-400"; } else { echo "hover:underline hover:text-sky-400"; } ?>  block py-2 pl-3 pr-4 rounded md:bg-transparent text-gray-500 md:p-0 dark:text-white text-base" aria-current="page">Admin panel</a>
                         </li>
                     <?php endif; ?>
+                    -->
                     <li>
                         <a href="/logout" class="hover:underline hover:text-sky-400 block py-2 pl-3 pr-4 rounded md:bg-transparent text-gray-500 md:p-0 dark:text-white text-base" aria-current="page">Logout</a>
                     </li>
                 <?php else : ?>
                     <li>
-                        <a href="/login" class="hover:underline hover:text-sky-400 block py-2 pl-3 pr-4 rounded md:bg-transparent text-gray-500 md:p-0 dark:text-white text-base" aria-current="page">Login</a>
+                        <a href="/login" class="<?php if ($url === 'login' ) { echo "underline text-sky-400"; } else { echo "hover:underline hover:text-sky-400"; } ?>  block py-2 pl-3 pr-4 rounded md:bg-transparent text-gray-500 md:p-0 dark:text-white text-base" aria-current="page">Login</a>
                     </li>
                     <li>
-                        <a href="/registration" class="hover:underline hover:text-sky-400 block py-2 pl-3 pr-4 rounded md:bg-transparent text-gray-500 md:p-0 dark:text-white text-base" aria-current="page">Register</a>
+                        <a href="/registration" class="<?php if ($url === 'registration' ) { echo "underline text-sky-400"; } else { echo "hover:underline hover:text-sky-400"; } ?>  block py-2 pl-3 pr-4 rounded md:bg-transparent text-gray-500 md:p-0 dark:text-white text-base" aria-current="page">Register</a>
                     </li>
                 <?php endif; ?>
             </ul>

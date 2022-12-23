@@ -50,6 +50,8 @@ class UserController
 
     public function showProfile(int $id): void
     {
+        global $url;
+
         $hikeController = new HikeController();
         $hikes = $hikeController->getUserHikes($id);
 

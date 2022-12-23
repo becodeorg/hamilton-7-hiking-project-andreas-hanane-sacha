@@ -37,6 +37,8 @@ class HikeController
 
     public function showSingleHike(int $id): void
     {
+        global $url;
+
         $userController = new UserController();
         $tagsController = new TagsController();
 
@@ -51,6 +53,7 @@ class HikeController
 
         $user = $userController->getUser(intval($hike['id_user']));
         $hike['createdBy'] = $user['nickname'];
+        $hike['updatedBy'] = $user['nickname'];
 
         include 'views/includes/header.view.php';
         include 'views/includes/navbar.view.php';
@@ -88,6 +91,8 @@ class HikeController
 
     public function showNewHikeForm(): void
     {
+        global $url;
+
         $tagsController = new TagsController();
         $tags = $tagsController->getTags();
 

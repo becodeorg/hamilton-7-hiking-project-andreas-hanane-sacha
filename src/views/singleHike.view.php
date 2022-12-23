@@ -63,8 +63,22 @@
             <p><?php echo $hike['description'] ?></p>
         </div>
         <div class="flex flex-row mb-5">
-            <label for="createdBy" class="mr-2">Created by : </label>
-            <p><?php echo $hike['createdBy'] ?></p>
+            <?php if ($hike['isUpdated']) : ?>
+                <label for="updatedBy" class="mr-2">Updated by : </label>
+                <p><?php echo $hike['updatedBy'] ?></p>
+            <?php else : ?>
+                <label for="createdBy" class="mr-2">Created by : </label>
+                <p><?php echo $hike['createdBy'] ?></p>
+            <?php endif; ?>
+        </div>
+        <div class="flex flex-row mb-5">
+            <?php if ($hike['isUpdated']) : ?>
+                <label for="updatedBy" class="mr-2">Updated the </label>
+                <p><?php echo $hike['date_creation'] ?></p>
+            <?php else : ?>
+                <label for="createdBy" class="mr-2">Created the </label>
+                <p><?php echo $hike['date_creation'] ?></p>
+            <?php endif; ?>
         </div>
         <hr class="mb-5">
         <div class="flex flex-row mb-5">
