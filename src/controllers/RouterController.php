@@ -166,7 +166,7 @@ class RouterController
 
         switch ($url){
             case "":
-                $this->home();
+                $this->home($url);
                 break;
             case 'registration':
                 $this->registration($method);

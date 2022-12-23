@@ -1,45 +1,48 @@
-<div>
-    <h2>Avaible Hikes</h2>
-    <select>
+<section class="flex flex-col px-12 py-10 w-full max-w-8xl m-auto">
+    <h2 class="text-2xl mb-10">Hello <span class="font-bold text-sky-400"><?php echo $_SESSION['user']['nickname']; ?></span> !</h2>
+    <h2 class="text-2xl underline mb-7">There are the avaible hikes : </h2>
+    <label class="underline mb-2" >Sort by : </label>
+    <select class="mb-7 px-2 py-2">
         <option value="all" selected>All</option>
         <?php foreach ($tags as $tag) { ?>
             <option value=<?php echo $tag['name']; ?>><?php echo ucfirst($tag['name']); ?></option>
         <?php } ?>
     </select>
-    <div>
-        <div>
+    <div class="mt-7 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-8">
         <?php foreach ($hikes as $hike) { ?>
-            <a href="/singleHike?id=<?php echo $hike['id']; ?>"><h3><?php echo $hike['name'] ?></h3></a>
-            <div>
-                <label for="distance">Distance : </label>
-                <p><?php echo $hike['distance'] ."km"; ?></p>
-            </div>
-            <div>
-                <label for="duration">Duration : </label>
-                <p><?php echo intdiv($hike['duration'], 60) .'h'. ($hike['duration'] % 60 == 0 ? "00" : $hike['duration'] % 60); ?></p>
-            </div>
-            <div>
-                <label for="elevation_gain">Elevation Gain : </label>
-                <p><?php echo $hike['elevation_gain']; ?></p>
-            </div>
-            <div>
-                <label for="tags">Tags : </label>
-                <ul>
-                    <?php foreach ($hike['tags'] as $tag) { ?>
-                        <li id=<?php echo $tag; ?>><?php echo $tag; ?></li>
-                    <?php } ?>
-                </ul>
-            </div>
-            <div>
-                <?php if ($hike['isUpdated']) : ?>
-                    <label for="updatedBy">Updated by : </label>
-                    <p><?php echo $hike['updatedBy'] ?></p>
-                <?php else : ?>
-                    <label for="createdBy">Created by : </label>
-                    <p><?php echo $hike['createdBy'] ?></p>
-                 <?php endif; ?>
+            <div class="flex flex-col rounded overflow-hidden shadow-lg mb-12 w-full py-5 px-5">
+                <a href="/singleHike?id=<?php echo $hike['id']; ?>"><img class="w-full mb-7" src="/resources/img/hike1.jpg" alt="hiking1"></a>
+                <a class="w-auto font-bold rounded hover:underline text-xl mb-5" href="/singleHike?id=<?php echo $hike['id']; ?>"><h3><?php echo ucfirst($hike['name']); ?></h3></a>
+                <div class="flex flex-row mb-5">
+                    <label for="distance">Distance : </label>
+                    <p><?php echo $hike['distance'] ."km"; ?></p>
+                </div>
+                <div class="flex flex-row mb-5">
+                    <label for="duration">Duration : </label>
+                    <p><?php echo intdiv($hike['duration'], 60) .'h'. ($hike['duration'] % 60 == 0 ? "00" : $hike['duration'] % 60); ?></p>
+                </div>
+                <div class="flex flex-row mb-5">
+                    <label for="elevation_gain">Elevation Gain : </label>
+                    <p><?php echo $hike['elevation_gain']; ?></p>
+                </div>
+                <div class="flex flex-row mb-5">
+                    <label for="tags">Tags : </label>
+                    <ul>
+                        <?php foreach ($hike['tags'] as $tag) { ?>
+                            <li id=<?php echo $tag; ?>><?php echo $tag; ?></li>
+                        <?php } ?>
+                    </ul>
+                </div>
+                <div class="flex flex-row mb-5">
+                    <?php if ($hike['isUpdated']) : ?>
+                        <label for="updatedBy">Updated by : </label>
+                        <p><?php echo $hike['updatedBy'] ?></p>
+                    <?php else : ?>
+                        <label for="createdBy">Created by : </label>
+                        <p><?php echo $hike['createdBy'] ?></p>
+                     <?php endif; ?>
+                </div>
             </div>
         <?php } ?>
-        </div>
     </div>
-</div>
+</section>

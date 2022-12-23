@@ -9,7 +9,7 @@
     </div>
     <div>
         <label for="duration">Duration : </label>
-        <input type="number" name="duration" min="1">
+        <input type="number" name="duration" min="1" step="0.01">
     </div>
     <div>
         <label for="elevation_gain">Elevation Gain : </label>
